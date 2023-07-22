@@ -1,0 +1,15 @@
+{
+  "name": "noors-sampleclock",
+  "version": "0.0.1",
+  "description": "This is a sample clock packaged as a module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Clock",
+    "NOOR"
+  ],
+  "author": "Thatcher Peskens",
+  "license": "ISC"
+}
