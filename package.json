@@ -1,15 +1,31 @@
 {
-  "name": "noors-sampleclock",
+  "name": "sample-clock",
   "version": "0.0.2",
   "description": "This is a sample clock packaged as a module",
-  "main": "index.js",
+  "type": "module",
+  "main": "src/clock.js",
+  "module": "src/clock.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "webpack serve --open",
+    "build": "webpack --mode production",
+    "dev": "webpack serve --mode development"
   },
   "keywords": [
     "Clock",
     "NOOR"
   ],
   "author": "Thatcher Peskens",
-  "license": "ISC"
+  "license": "ISC",
+  "private": "true",
+  "dependencies": {
+    "lit": "^2.7.6"
+  },
+  "devDependencies": {
+    "copy-webpack-plugin": "^11.0.0",
+    "html-webpack-plugin": "^5.5.3",
+    "node-static": "^0.7.11",
+    "webpack": "^5.88.2",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^4.15.1"
+  }
 }
