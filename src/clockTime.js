@@ -1,8 +1,6 @@
 var inc = 1000;
 
 function setClockTime() {
-  console.log("setClockTime called!");
-
   const date = new Date();
 
   const hours = ((date.getHours() + 11) % 12) + 1;

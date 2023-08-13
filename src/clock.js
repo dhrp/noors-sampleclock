@@ -112,7 +112,6 @@ class SampleClock extends LitElement {
   constructor() {
     super();
     this.flag = false;
-    this.startClock();
   }
 
   render() {
@@ -125,6 +124,12 @@ class SampleClock extends LitElement {
         <span class="dot"></span>
       </div>
     </div>`;
+  }
+
+  firstUpdated() {
+    console.log("firstUpdated called!");
+    this.setClockTime();
+    this.startClock();
   }
 }
 customElements.define(SampleClock.is, SampleClock);
