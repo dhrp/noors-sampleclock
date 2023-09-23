@@ -23,4 +23,42 @@ function startClock() {
   setInterval(() => this.setClockTime(), inc);
 }
 
-export { startClock, setClockTime };
+function changeFaceColor(event, shadow) {
+  let color = event.target.value;
+  let clock = shadow.querySelector(".clock");
+  clock.style.background = color;
+}
+
+function changeHandsColor(event, shadow) {
+  console.log("changeHandsColor called!");
+  let color = event.target.value;
+  let hour = shadow.querySelector(".hour");
+  let minute = shadow.querySelector(".minute");
+
+  hour.style.background = color;
+  minute.style.background = color;
+}
+
+function submitData(event, shadow) {
+  console.log("submitData called!");
+
+  let handsColor = shadow.querySelector("#hands-color-input").value;
+  let faceColor = shadow.querySelector("#face-color-input").value;
+
+  let detail = { submit: true, handsColor: handsColor, faceColor: faceColor };
+
+  let saveEvent = new Event("save", {
+    // setting composed=true allows it to leave the shadowRoot
+    composed: true,
+  });
+  saveEvent.detail = detail;
+  shadow.dispatchEvent(saveEvent);
+}
+
+export {
+  startClock,
+  setClockTime,
+  changeFaceColor,
+  changeHandsColor,
+  submitData,
+};

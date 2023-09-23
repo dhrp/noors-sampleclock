@@ -35,3 +35,13 @@ This should also enable Live Reload / Hot Module Reloading.
 ### Loading it into the Noor-Admin app
 
 The Noor-admin app simply installs this module as "sample-clock" and renders it onto the page. All building is taken care of by the svelte app.
+
+In order to install this package in a "development way" that is so that you can edit files in this repo, and the changes to appear in the app. Install it like so:
+
+npm link ../package-dir
+
+To install it for production, from git:
+`npm install github:dhrp/noors-sampleclock#semver:^0.0.3`
+
+Which should result in in a line in your package.json like:
+`"sample-clock": "github:dhrp/noors-sampleclock#semver:^0.0.3",`

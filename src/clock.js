@@ -1,5 +1,11 @@
 import { LitElement, html, css } from "lit";
-import { startClock, setClockTime } from "./clockTime.js";
+import {
+  startClock,
+  setClockTime,
+  changeFaceColor,
+  changeHandsColor,
+  submitData,
+} from "./clockTime.js";
 
 // https://freefrontend.com/css-clocks/
 // https://codepen.io/dope/pen/KJYMZz
@@ -115,21 +121,53 @@ class SampleClock extends LitElement {
   }
 
   render() {
-    console.log("rendering custom-text!");
     return html`<div class="clock">
-      <div class="wrap">
-        <span class="hour"></span>
-        <span class="minute"></span>
-        <span class="second"></span>
-        <span class="dot"></span>
+        <div class="wrap">
+          <span class="hour"></span>
+          <span class="minute"></span>
+          <span class="second"></span>
+          <span class="dot"></span>
+        </div>
       </div>
-    </div>`;
+      <p>Choose your clock colors:</p>
+      <div>
+        <input
+          type="color"
+          id="hands-color-input"
+          name="hands"
+          value="#000000"
+        />
+        <label for="hands">Hands</label>
+      </div>
+      <div>
+        <input type="color" id="face-color-input" name="face" value="#ffffff" />
+        <label for="face">Face</label>
+      </div>
+      <div>
+        <input type="button" id="save-button" name="save" value="Save" />
+        <label for="face">Save</label>
+      </div> `;
   }
 
   firstUpdated() {
     console.log("firstUpdated called!");
-    this.setClockTime();
-    this.startClock();
+    const shadow = this.shadowRoot;
+
+    this.setClockTime(shadow);
+    this.startClock(shadow);
+
+    const face = this.shadowRoot.querySelector("#face-color-input");
+    face.addEventListener("change", (event) => changeFaceColor(event, shadow));
+
+    const hands = this.shadowRoot.querySelector("#hands-color-input");
+    hands.addEventListener("change", (event) =>
+      changeHandsColor(event, shadow)
+    );
+
+    const submitButton = this.shadowRoot.querySelector("#save-button");
+    submitButton.addEventListener("click", (event) =>
+      submitData(event, shadow)
+    );
   }
 }
 customElements.define(SampleClock.is, SampleClock);
