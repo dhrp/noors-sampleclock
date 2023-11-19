@@ -23,15 +23,17 @@ function startClock() {
   setInterval(() => this.setClockTime(), inc);
 }
 
-function changeFaceColor(event, shadow) {
-  let color = event.target.value;
+function testFunc() {
+  console.log("startClock called!");
+}
+
+function changeFaceColor(color, shadow) {
   let clock = shadow.querySelector(".clock");
   clock.style.background = color;
 }
 
-function changeHandsColor(event, shadow) {
+function changeHandsColor(color, shadow) {
   console.log("changeHandsColor called!");
-  let color = event.target.value;
   let hour = shadow.querySelector(".hour");
   let minute = shadow.querySelector(".minute");
 
@@ -45,7 +47,11 @@ function submitData(event, shadow) {
   let handsColor = shadow.querySelector("#hands-color-input").value;
   let faceColor = shadow.querySelector("#face-color-input").value;
 
-  let detail = { submit: true, handsColor: handsColor, faceColor: faceColor };
+  let detail = {
+    submit: true,
+    handsColor: handsColor,
+    faceColor: faceColor,
+  };
 
   let saveEvent = new Event("save", {
     // setting composed=true allows it to leave the shadowRoot
@@ -61,4 +67,5 @@ export {
   changeFaceColor,
   changeHandsColor,
   submitData,
+  testFunc,
 };

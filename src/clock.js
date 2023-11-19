@@ -114,6 +114,7 @@ class SampleClock extends LitElement {
 
   setClockTime = setClockTime;
   startClock = startClock;
+  changeFaceColor = changeFaceColor;
 
   constructor() {
     super();
@@ -157,11 +158,13 @@ class SampleClock extends LitElement {
     this.startClock(shadow);
 
     const face = this.shadowRoot.querySelector("#face-color-input");
-    face.addEventListener("change", (event) => changeFaceColor(event, shadow));
+    face.addEventListener("change", (event) =>
+      changeFaceColor(event.target.value, shadow)
+    );
 
     const hands = this.shadowRoot.querySelector("#hands-color-input");
     hands.addEventListener("change", (event) =>
-      changeHandsColor(event, shadow)
+      changeHandsColor(event.target.value, shadow)
     );
 
     const submitButton = this.shadowRoot.querySelector("#save-button");
